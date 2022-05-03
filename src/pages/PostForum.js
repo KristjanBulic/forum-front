@@ -5,7 +5,7 @@ import Header from "../components/Header";
 const PostForm = () => {
     const {register, handleSubmit} = useForm();
     const onFormSubmit = (data) => {
-      axios.post("http://localhost:8080/new-post", data);
+      axios.post(process.env.API + "/new-post", data);
       window.location = "/";
     }
 

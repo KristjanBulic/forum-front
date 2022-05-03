@@ -6,7 +6,7 @@ const PostContainer = () => {
     const [data, setData] = useState([])
 
     const getPosts = async () => {
-        const posts = await axios.get("http://localhost:8080/posts").then(res => res.data)
+        const posts = await axios.get(process.env.API + "/posts").then(res => res.data)
         setData(posts)
     }
 
