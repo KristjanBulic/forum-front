@@ -6,7 +6,16 @@ const PostContainer = () => {
     const [data, setData] = useState([])
 
     const getPosts = async () => {
-        const posts = await axios.get(process.env.API + "/posts").then(res => res.data)
+        const posts = await axios.get(process.env.API + "/posts").then(res => res.data);
+        posts.sort((elem1, elem2) => {
+            if (elem1.id > elem2.id) {
+                return -1;
+            } else if (elem1.id < elem2.id) {
+                return 1;
+            } else {
+                return 0;
+            }
+        });
         setData(posts)
     }
 
@@ -26,7 +35,7 @@ const PostContainer = () => {
                             <p className={"has-text-left"}>{x.text}</p>
                         </div>
                         <div className={"card-footer"}>
-                            <button className={"button is-dark"}>Comments</button>
+                            <a className={"button is-dark"} href={"/comments/" + x.id}>Comments</a>
                         </div>
                     </div>);
             })}
